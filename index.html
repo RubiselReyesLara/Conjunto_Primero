@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"/>
+    <title>Conjunto primero</title>
+</head>
+<body>
+    <div id="principal">
+
+        <div id="init">
+            <div id="init-div-header">
+                <span id="title">C&aacutelculo del conjunto primero</span>
+                <button id="btn-add-var">
+                    Agregar variable
+                </button>
+            </div>
+
+            <div id="vars-div">
+                    <div id="var-div"><input type="text" id="inputVar1" value='S'>
+                        <input type="text" id="inputVar2" value='0S1|01|1'></div>
+                    
+                    <div id="var-div"><input type="text" id="inputVar1" value="S'">
+                        <input type="text" id="inputVar2" value="0S'"></div>
+                    
+                    <div id="var-div"><input type="text" id="inputVar1" value='A'>
+                        <input type="text" id="inputVar2" value="S|C1"></div>
+            </div>
+
+            <div id="btn-calculate-container">
+                <button id="btn-calculate">Calcular</button>
+                <button id="btn-clean">Limpiar</button>
+            </div>
+
+        </div>
+
+        <div id="output">
+            <div id="div-v-t-s">
+                <span id="v">V=<input type="text" disabled="true"></span>
+                <span id="t">T=<input type="text" disabled="true"></span>
+                <span id="s">S=<input type="text" disabled="true"></span>
+            </div>
+            <div id="text-area">
+                <textarea style="width:90%; height: 200px;"></textarea>
+            </div>
+        </div>
+    </div>
+    <script src="src/loadVisuals.js" type="module"></script>
+    <script src="src/getV_T_S.js" type="module"></script>
+</body>
+</html>
