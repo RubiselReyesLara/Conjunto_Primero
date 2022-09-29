@@ -1,24 +1,24 @@
-import  Alert  from "./calculate_first.js";
+import  { calculateSetFirst }  from "./calculate_first.js";
 
 const getV_T_S = (grammar) => {
-    const leftSide_vars = Object.keys(grammar); // A
-    const rightSide_chains = Object.values(grammar); // bB1 | aPs1 | &
+    const RULES = Object.keys(grammar); // A
+    const PRODUCTIONS = Object.values(grammar); // bB1 | aPs1 | &
 
     // GET V
     // V => left side vars and uppercases are considered like variables,and prime uppercases
-    const V = getV(leftSide_vars, rightSide_chains);
+    const V = getV(RULES, PRODUCTIONS);
     document.querySelector("#v > input").value = `{ ${ V } }`;
 
     // GET T
     // Terminal => All elements in right side that not be included in V
-    const T = getT(V, rightSide_chains);
+    const T = getT(V, PRODUCTIONS);
     document.querySelector("#t > input").value = `{ ${ T } }`;
 
     // GET S
     // Start state
     const S = getS(V);
     document.querySelector("#s > input").value = `{ ${ S } }`;
-    Alert();
+    calculateSetFirst(V, T, S, PRODUCTIONS);
 
 }
 
