@@ -4,8 +4,7 @@ function calculateFirst(V, T, S, PRODUCTIONS){
         PRODUCTIONS[index] = PRODUCTIONS[index].split('|');
     }
 
-    console.table(PRODUCTIONS);
-
+    // For every 
     PRODUCTIONS.forEach((arrayProductions, vIndex) => {
         console.log(V[vIndex]);
         calculate(V, T, arrayProductions, PRODUCTIONS, -1);
