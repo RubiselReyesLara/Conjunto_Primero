@@ -1,21 +1,55 @@
-function calculateSetFirst(V, T, S, PRODUCTIONS){
-    PRODUCTIONS.forEach(productionSet => {
-        const productionSetSplited = productionSet.split('|');
+function calculateFirst(V, T, S, PRODUCTIONS){
 
-        for(let i = 0; i <= productionSetSplited.length; i++) {
-            verify(V, T, S, productionSetSplited[i]);
-        }
+    // Divide every production set in an array divided by each '|'
+    for(let index = 0; index < PRODUCTIONS.length; index++){
+        PRODUCTIONS[index] = PRODUCTIONS[index].split('|');
+    }
+
+    console.table(PRODUCTIONS);
+
+    PRODUCTIONS.forEach((arrayProductions, vIndex) => {
+        calculate(V, T, arrayProductions, PRODUCTIONS, -1);
     });
+
 }
 
-function verify(V, T, S, production){
-    if(V.includes(production[0])) {
-        console.log(production[0], 'recusividad');
-    } else if(T.includes(production[0])) {
-        console.log(production[0], 'terminal');
-    // ESTABLECER UN SUBSTRING EN LAS PRODUCCIONES DESDE CADA UNA
+function calculate(V, T, arrayProductions, PRODUCTIONS, recursiveAllowedCounter){
+    recursiveAllowedCounter++;
+    if(recursiveAllowedCounter < 3) {
+        arrayProductions.forEach((production, index) => {
+            if(V.includes(production[0])) {
+                console.log('First(' + production + ') = {');
+                const indexVRecursiveProd = V.indexOf(production[0]);
+                if(indexVRecursiveProd < PRODUCTIONS.length - 1){
+                    calculate(V, T, PRODUCTIONS[indexVRecursiveProd], PRODUCTIONS, recursiveAllowedCounter);
+                } else {
+                    console.log('{}');
+                }
+
+            } else if(T.includes(production[0])) {
+                console.log('First(' + production + ') = { ' + production[0] + ' }');
+            }
+        });
     }
 }
 
 
-export { calculateSetFirst };
+    // PRODUCTIONS.forEach((productionSet, vIndex) => {
+    //     console.log(V[vIndex]);
+    //     const productionSetSplited = productionSet.split('|');
+    //     for(let i = 0; i < productionSetSplited.length; i++) {
+    //         calculate(vIndex, V, T, S, productionSetSplited[i])
+    //     }
+    // });
+//}
+
+// function calculate(vIndex, V, T, S, production) {
+//     if(V.includes(production[0])) {
+
+//     } else if(T.includes(production[0])) {
+//         console.log('First(' + production + ') = { ' + production[0] + ' }');
+//     }
+// }
+
+
+export { calculateFirst as calculateSetFirst };
