@@ -6,8 +6,9 @@ function calculateFirst(V, T, S, PRODUCTIONS){
 
     // For every 
     PRODUCTIONS.forEach((arrayProductions, vIndex) => {
-        console.log(V[vIndex]);
+        console.log(V[vIndex] + ' {');
         calculate(V, T, arrayProductions, PRODUCTIONS, -1);
+        console.log('}');
     });
 
 }
@@ -17,7 +18,7 @@ function calculate(V, T, arrayProductions, PRODUCTIONS, recursiveAllowedCounter)
     if(recursiveAllowedCounter < PRODUCTIONS.length + 1) {
         arrayProductions.forEach((production) => {
             if(V.includes(production[0])) {
-                console.log('First(' + production + ') = {');
+                console.log('Primero(' + production + ') = {');
                 const indexVRecursiveProd = V.indexOf(production[0]);
                 if(indexVRecursiveProd < PRODUCTIONS.length){
                     calculate(V, T, PRODUCTIONS[indexVRecursiveProd], PRODUCTIONS, recursiveAllowedCounter);
@@ -27,7 +28,9 @@ function calculate(V, T, arrayProductions, PRODUCTIONS, recursiveAllowedCounter)
                     console.log('{}');
                 }
             } else if(T.includes(production[0])) {
-                console.log('First(' + production + ') = { ' + production[0] + ' }');
+                console.log('Primero(' + production + ') = { ' + production[0] + ' }');
+            } else if(production[0] == '&'){
+                console.log('Primero(' + production + ') = { ' + production[0] + ' }');
             }
         });
     } else {
